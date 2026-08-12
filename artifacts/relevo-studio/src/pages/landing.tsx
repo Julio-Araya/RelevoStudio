@@ -163,10 +163,10 @@ export function LandingPage() {
           <FadeIn delay={0.08}>
             <div className="flex flex-col gap-6 items-start">
               <a 
-                href="mailto:hola@relevostudio.com"
+                href="mailto:hello@relevostudio.com"
                 className="font-sans text-[24px] md:text-[32px] text-[var(--brass)] hover:text-[var(--brass-lo)] hover:underline underline-offset-[6px] decoration-1 decoration-[var(--brass-lo)] transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[var(--brass)] focus-visible:ring-offset-8 focus-visible:ring-offset-[var(--ink)]"
               >
-                hola@relevostudio.com
+                hello@relevostudio.com
               </a>
               <span className="font-mono text-[11px] text-[var(--stone)] uppercase tracking-[0.08em]">
                 RESPONDEMOS EN MENOS DE 24 HORAS
