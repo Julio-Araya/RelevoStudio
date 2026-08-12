@@ -1,0 +1,216 @@
+# Prompt para Replit — Landing de Relevo Studio
+
+> Copiar y pegar completo en Replit Agent. Proyecto separado del demo de Termiprotec.
+> Destino: `relevostudio.com` (raíz).
+
+---
+
+## Contexto
+
+Construye una landing de **una sola página** para Relevo Studio, un estudio de inteligencia artificial aplicada con base en Chile que trabaja con empresas medianas de Latinoamérica.
+
+Esta página tiene un único trabajo: cuando alguien recibe una propuesta o un demo de Relevo y entra a verificar quiénes somos, tiene que encontrar algo que confirme que somos reales y que sabemos lo que hacemos. No es una página de captación. No necesita convertir. Necesita **respaldar**.
+
+De eso se desprenden dos reglas:
+
+- **Corta.** Cuatro secciones, no diez. Si la persona hace scroll más de tres veces, sobra contenido.
+- **Bien hecha.** La página *es* la muestra de trabajo. Un detalle mal resuelto pesa más que un párrafo faltante.
+
+**Stack:** Next.js 14 (App Router) + TypeScript + Tailwind. Sitio estático, sin backend, sin base de datos, sin formularios que envíen a ningún lado.
+
+**Portabilidad:** el proyecto se publica en Vercel. Next.js estándar, nada específico de Replit. Tiene que correr con `npm install && npm run build && npm start` en cualquier máquina.
+
+---
+
+## Dirección de diseño
+
+Relevo es el estudio matriz; Workieo y Serchi son productos que viven adentro. Visualmente eso tiene que leerse: **misma familia, distinta voz.** Relevo es el más sobrio de los tres.
+
+Los atributos son sofisticado, preciso, moderno. La referencia mental no es una startup de software: es un fabricante de instrumentos de precisión. Verde profundo, papel, latón.
+
+### Color
+
+```css
+:root {
+  --ink:        #0F1A15;  /* fondo dominante */
+  --ink-2:      #16241D;  /* paneles elevados sobre ink */
+  --ink-3:      #1E3129;  /* bordes y separadores sobre oscuro */
+
+  --paper:      #EFEFE6;  /* secciones claras */
+  --bone:       #F7F7F0;  /* superficie clara elevada */
+
+  --body:       #C4CCC5;  /* texto sobre oscuro */
+  --stone:      #8C978F;  /* texto secundario, etiquetas */
+
+  --brass:      #C9A227;  /* acento único */
+  --brass-lo:   #E3C35C;  /* hover y estados activos */
+}
+```
+
+**Un solo acento.** El latón se usa con avaricia: en los overlines, en el elemento firma y en un botón. Si aparece en más de cinco lugares de la página, sobra en tres.
+
+La página es mayoritariamente oscura. Una sola sección invierte a `--paper` — la de productos — y ese cambio de fondo es lo que marca el ritmo. No alternes claro y oscuro repetidamente.
+
+### Tipografía
+
+Tres roles, tres familias. Todas desde Google Fonts.
+
+- **Plus Jakarta Sans** — display. Pesos 700/800. `letter-spacing: -0.05em` **siempre**, sin excepción. Es la regla de la casa y es lo que da el look apretado.
+- **Hanken Grotesk** — cuerpo. Peso 500. `line-height: 1.5`.
+- **IBM Plex Mono** — etiquetas, overlines, datos, pie de página. Peso 500, `letter-spacing: +0.08em`, MAYÚSCULAS, tamaño 11–12px, color `--stone`.
+
+La monoespaciada es la que diferencia a Relevo de sus productos. Úsala en toda la capa de metadatos: numeración, etiquetas de sección, año, dominios de productos. Nunca en párrafos.
+
+Escala: 72px / 48px / 32px / 24px para display; 17px cuerpo; 11px mono. En móvil los display bajan a ~55% manteniendo el tracking negativo.
+
+### Forma y movimiento
+
+- Paneles: `border-radius: 28px`. Botones y pills: `999px`. Nada intermedio.
+- Bordes sobre oscuro: `1px solid var(--ink-3)`.
+- Sombras: casi ninguna. Sobre fondo oscuro no funcionan. La jerarquía se hace con contraste de superficie, no con elevación.
+- Curva única: `cubic-bezier(.25,1,.5,1)`.
+- Movimiento: revelados al hacer scroll (fade + `translateY(16px)`, 700ms, escalonados a 80ms). El elemento firma se anima. Nada más se mueve.
+- `prefers-reduced-motion: reduce` desactiva todo lo anterior.
+
+---
+
+## Sección 1 — Apertura
+
+Pantalla completa, fondo `--ink`.
+
+Arriba a la izquierda, en mono: `RELEVO STUDIO` · arriba a la derecha, en mono: `SANTIAGO · CHILE`
+
+Centro, el titular en 72px, peso 800, tracking −0.05em:
+
+> **Relevo**
+> *re·le·vo* · del latín *relevare*: aliviar lo que pesa.
+
+Trátalo literalmente como una **entrada de diccionario**: la palabra en display gigante, la transcripción y la etimología debajo en mono y cuerpo, separadas por una línea hairline. Es una estructura que ya existe en el mundo y comunica precisión sin decorar nada.
+
+Debajo, en 24px, cuerpo:
+
+> Construimos sistemas de inteligencia artificial para empresas que ya funcionan y todavía dependen de que alguien conteste manualmente.
+
+### El elemento firma: el relevo
+
+Es lo único llamativo de la página. Gasta aquí toda la audacia y deja el resto callado.
+
+Una barra horizontal dividida en dos tramos, ocupando el ancho del contenido:
+
+```
+LO QUE HOY HACE UNA PERSONA          LO QUE HACE EL SISTEMA
+├──────────────────────────┤═══════════════════════════════┤
+                            ▲
+                        el relevo
+```
+
+- Tramo izquierdo: línea delgada, color `--stone`, aspecto de trazo manual
+- Tramo derecho: barra sólida, color `--brass`, más gruesa
+- Un marcador circular viaja de izquierda a derecha al entrar la página en vista, se detiene en la unión, y ahí la barra derecha se llena desde el punto de entrega
+- Duración total 1.8s, curva firma, una sola vez, sin repetición
+
+Etiquetas encima de cada tramo en mono, 11px. Es el nombre del estudio explicado sin una sola frase de venta.
+
+---
+
+## Sección 2 — Qué hacemos
+
+Fondo `--ink`, continuidad con la anterior separada por un hairline.
+
+Overline en mono, color `--brass`: `QUÉ CONSTRUIMOS`
+
+Tres bloques en columna, no en tarjetas. Cada uno: un titular de 32px y dos líneas de cuerpo. Sin íconos. Sin numeración — no es una secuencia, son tres cosas paralelas, y numerarlas mentiría sobre el contenido.
+
+**Asistentes que saben del negocio**
+Responden a clientes y equipos con el conocimiento real de la empresa, en el canal donde ya están: sitio, WhatsApp, correo.
+
+**Procesos que dejan de ser manuales**
+Cotizaciones, calificación de contactos, reportes, seguimiento. Lo que hoy ocupa horas de alguien pasa a ocurrir solo.
+
+**Producto, no presentaciones**
+Entregamos software funcionando en producción, no una estrategia en PDF. Es la diferencia entre un consultor y un estudio.
+
+---
+
+## Sección 3 — Productos
+
+**Aquí el fondo invierte a `--paper`.** Es el único quiebre de la página y por eso funciona.
+
+Overline en mono, color `--ink`: `PRODUCTOS PROPIOS`
+
+Titular 48px: **No solo trabajamos para clientes.**
+
+Dos bloques, uno por producto. Cada uno con el nombre en 32px, una línea de descripción en cuerpo, y el dominio en mono con enlace.
+
+**Serchi** — Reclutamiento con inteligencia artificial. Filtra, ordena y entiende candidatos a la velocidad a la que llegan.
+`serchi.ai ↗`
+
+**Workieo** — Control de asistencia por WhatsApp para empresas con personal en terreno. Sin reloj biométrico, sin apps nuevas.
+`workieo.com ↗`
+
+Los enlaces abren en pestaña nueva. La flecha se desplaza 3px a la derecha en hover, 200ms, curva firma.
+
+Cierra la sección con una línea en cuerpo, color `--stone`:
+
+> El resto de nuestro trabajo es bajo acuerdo de confidencialidad.
+
+Esa frase hace el trabajo de un portafolio sin necesitar uno. Déjala sola, sin adorno.
+
+---
+
+## Sección 4 — Contacto
+
+Vuelve a `--ink`. Corta, sin formulario.
+
+Titular 48px: **Conversemos.**
+
+Un correo en 32px como enlace `mailto:`, en `--brass`, con subrayado que aparece en hover.
+*[Reemplazar por el correo real antes de publicar]*
+
+Debajo, en mono: `RESPONDEMOS EN MENOS DE 24 HORAS`
+
+### Pie
+
+Una sola línea, mono, 11px, `--stone`, separada por un hairline:
+
+`RELEVO STUDIO · SANTIAGO, CHILE · 2026`
+
+---
+
+## Qué NO incluir
+
+Esta lista es tan importante como el resto del prompt. Nada de:
+
+- Sección "sobre nosotros" con historia del fundador
+- Fotos de equipo, fotos de stock, ilustraciones genéricas de IA
+- Contadores de estadísticas (proyectos entregados, clientes felices, años de experiencia)
+- Testimonios
+- Logos de tecnologías (React, OpenAI, AWS)
+- Formulario de contacto
+- Blog, newsletter, cookies banner
+- Carrusel de cualquier tipo
+- Gradientes de malla, degradados morados, partículas, fondos animados
+
+Si una sección no aparece descrita arriba, no va.
+
+---
+
+## Criterios de terminado
+
+- Responsive real hasta 375px
+- Foco de teclado visible en todos los enlaces, outline `--brass`
+- `prefers-reduced-motion` respetado
+- Contraste mínimo AA en todo el texto — revisa especialmente `--stone` sobre `--ink`
+- Metadatos: `<title>Relevo Studio — Sistemas de inteligencia artificial</title>`, descripción, y una imagen Open Graph generada con el titular de la sección 1 sobre `--ink`
+- Cero errores de consola
+- Peso total bajo 500 KB sin contar fuentes
+
+---
+
+## Publicación
+
+1. Replit → GitHub (repo privado)
+2. GitHub → Vercel, preset Next.js
+3. Dominio `relevostudio.com` y `www.relevostudio.com` en Vercel
+4. En Cloudflare, los registros que indique Vercel con el **proxy naranja desactivado** (DNS only)
+5. Verificar que `www` redirija a la raíz, no que existan dos sitios

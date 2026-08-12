@@ -1,6 +1,6 @@
-# [Project name]
+# Relevo Studio
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Landing page for Relevo Studio — an applied AI studio based in Santiago, Chile. A single-page credential site for prospects who receive a proposal or demo.
 
 ## Run & Operate
 
