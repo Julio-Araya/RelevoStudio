@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+/*
+ * Tokens de marca — extraídos de docs/relevo-design-system-v1.html (v1).
+ * Único lugar del código donde se escriben valores de marca a mano.
+ * Los componentes consumen siempre estas variables / utilidades.
+ */
+
+@theme {
+  /* 01 — Color */
+  --color-*: initial;
+
+  --color-ink-100: #1e4034;
+  --color-ink-200: #16332b;
+
+  --color-offwhite-100: #fbfbf3;
+  --color-offwhite-200: #fffff3;
+  --color-offwhite-300: #f0f0e2;
+  --color-offwhite-400: #deded0;
+
+  --color-coral-100: #ffe7df;
+  --color-coral-200: #ff7a5e;
+  --color-coral-300: #ff5a3c;
+  --color-coral-400: #e5431f;
+
+  --color-teal-100: #e2f0ec;
+  --color-teal-300: #7fc9bc;
+  --color-teal-500: #0e8c7f;
+  --color-teal-600: #0a5f57;
+  --color-teal-800: #063b36;
+  /* isotipo sobre fondo oscuro */
+  --color-teal-bright: #2fb39f;
+
+  /* texto secundario y etiquetas (valores del design system) */
+  --color-muted: #4c5a52;
+  --color-label: #8a9089;
+
+  /* 02 — Tipografía */
+  --font-display: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-body: var(--font-hanken), system-ui, sans-serif;
+
+  /* 04 — Easings */
+  --ease-*: initial;
+  --ease-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-overshoot: cubic-bezier(0.34, 1.26, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  --ease-carousel: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* 05 — Radios */
+  --radius-*: initial;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+
+  /* 05 — Sombras (base rgba de ink-200) */
+  --shadow-*: initial;
+  --shadow-cta: 0 4px 16px rgba(22, 51, 43, 0.22);
+  --shadow-card: 0 24px 64px rgba(22, 51, 43, 0.2), 0 4px 16px rgba(22, 51, 43, 0.1);
+}
+
+/* Gradientes de marca — derivados de los tokens de color */
+:root {
+  --gradient-teal: linear-gradient(135deg, var(--color-teal-500) 0%, var(--color-teal-800) 100%);
+  --gradient-ink: linear-gradient(137deg, var(--color-ink-100) 0%, var(--color-teal-800) 100%);
+  --gradient-warm: linear-gradient(50deg, var(--color-coral-100) -30%, var(--color-coral-200) 45%, var(--color-coral-400) 100%);
+  --gradient-signal: linear-gradient(224deg, var(--color-teal-600) -26%, var(--color-coral-200) 90%, var(--color-coral-300) 122%);
+}
+
+@utility bg-ink-gradient {
+  background-image: var(--gradient-ink);
+}
+@utility bg-teal-gradient {
+  background-image: var(--gradient-teal);
+}
+@utility bg-warm-gradient {
+  background-image: var(--gradient-warm);
+}
+@utility bg-signal-gradient {
+  background-image: var(--gradient-signal);
+}
+
+/* 03 — Motion */
+@keyframes rv-handoff {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  45%,
+  55% {
+    transform: translateX(7px);
+  }
+}
+@keyframes rv-handoff-b {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  45%,
+  55% {
+    transform: translateX(-7px);
+  }
+}
+@keyframes rv-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(33%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rv-grow {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@utility animate-handoff {
+  animation: rv-handoff 4.2s var(--ease-quart) infinite;
+}
+@utility animate-handoff-b {
+  animation: rv-handoff-b 4.2s var(--ease-quart) infinite;
+}
+
+/* Reveal disparado por scroll donde el navegador lo soporta; sin soporte, el
+   contenido simplemente se muestra (degradación limpia). */
+@utility rv-reveal {
+  @supports (animation-timeline: view()) {
+    animation: rv-slide-up 1s var(--ease-quart) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+@utility rv-reveal-grow {
+  @supports (animation-timeline: view()) {
+    animation: rv-grow 1s var(--ease-quart) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Base */
+@layer base {
+  body {
+    background-color: var(--color-offwhite-200);
+    color: var(--color-ink-200);
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-coral-300);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background-color: var(--color-coral-100);
+    color: var(--color-ink-200);
+  }
+}
+
+/* Escala tipográfica del design system (02) */
+@layer components {
+  .rv-header-1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1.03;
+    font-size: clamp(2.4rem, 6vw, 62px);
+  }
+  .rv-header-4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1.08;
+    font-size: clamp(2rem, 4.6vw, 48px);
+  }
+  .rv-header-6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+    font-size: clamp(1.75rem, 3.8vw, 40px);
+  }
+  .rv-header-7 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.15;
+    font-size: clamp(1.4rem, 3vw, 32px);
+  }
+  .rv-subheader-1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    font-size: clamp(1.15rem, 2.2vw, 24px);
+  }
+  .rv-overline {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  /* 06 — Botón pill con flecha */
+  .rv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    border-radius: calc(infinity * 1px);
+    padding: 14px 24px;
+    text-decoration: none;
+    transition:
+      transform 0.3s var(--ease-quart),
+      box-shadow 0.3s var(--ease-quart);
+  }
+  .rv-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-cta);
+  }
+  .rv-btn .rv-arrow {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-quart);
+  }
+  .rv-btn:hover .rv-arrow {
+    transform: translate(3px, -3px);
+  }
+
+  /* Enlace de texto con flecha */
+  .rv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .rv-link .rv-arrow {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-quart);
+  }
+  .rv-link:hover .rv-arrow {
+    transform: translate(3px, -3px);
+  }
+}

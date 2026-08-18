@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Isotipo Relevo Studio: colores del design system v1 (teal-500 / coral-300) -->
+  <rect width="120" height="120" rx="26" fill="#fffff3"/>
+  <circle cx="52" cy="60" r="26" fill="none" stroke="#0E8C7F" stroke-width="10"/>
+  <circle cx="68" cy="60" r="26" fill="none" stroke="#FF5A3C" stroke-width="10"/>
+</svg>

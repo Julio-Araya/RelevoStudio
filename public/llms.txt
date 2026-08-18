@@ -1,0 +1,32 @@
+# Relevo Studio
+
+> Estudio de IA aplicada en Santiago de Chile, para Latinoamérica. Construye los sistemas que relevan los procesos que hoy dependen de que alguien conteste, escriba o revise a mano. Entrega el sistema funcionando, no la presentación.
+
+Relevo Studio trabaja con empresas pequeñas y medianas con un negocio que ya funciona, presupuesto real y procesos que dependen de que alguien conteste a mano. Su tesis: la inteligencia artificial no arregla una operación desordenada, la amplifica; una empresa que no es legible —para las máquinas ni para sí misma— no puede apalancarse en la IA.
+
+## Qué construye
+
+- **Legibilidad**: catálogos, contenidos y datos preparados para ser leídos por buscadores, por modelos de lenguaje y por agentes conversacionales.
+- **Agentes**: sistemas conversacionales sobre WhatsApp, web o canales internos, que atienden, cotizan, califican y venden con el conocimiento real del negocio.
+- **Sistemas**: automatización y software a medida cuando el proceso no cabe en una herramienta existente, incluidas migraciones y reconstrucciones de plataforma.
+- **Fundaciones**: modelo de negocio, marca, go-to-market y pricing; no se vende suelta, se ordena antes de construir.
+
+## A qué renuncia
+
+- No vende horas ni personas.
+- No opera la máquina todos los meses: no gestiona campañas ni publica redes.
+- No entrega diagnósticos que no terminan en algo construido.
+
+## Producto propio
+
+- [Serchi](https://serchi.ai): reclutamiento y selección con inteligencia artificial.
+- [Workieo](https://workieo.com): control de asistencia por WhatsApp para equipos en terreno.
+
+## Páginas
+
+- [Home](https://relevostudio.com/): qué hace el estudio y dónde suele estar el punto que releva.
+- [Manifiesto Fundacional](https://relevostudio.com/manifiesto): en qué cree y a qué renuncia.
+
+## Contacto
+
+- Correo: hello@relevostudio.com (responde en menos de 24 horas)
