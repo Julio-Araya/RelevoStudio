@@ -40,7 +40,7 @@ export default function Manifiesto() {
       />
       <article className="text-[17px] leading-[1.75] md:text-[18px]">
         <header>
-          <p className="rv-overline mb-4 text-teal-500">Documento de postura</p>
+          <p className="rv-overline mb-4 text-teal-600">Documento de postura</p>
           <h1 className="rv-header-4">Manifiesto Fundacional</h1>
           <p className="mt-4 italic text-muted">
             Versión 2 · Fija en qué creemos y a qué renunciamos.

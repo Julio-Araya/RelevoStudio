@@ -30,20 +30,39 @@ Tres archivos mandan sobre cualquier criterio propio. Léelos antes de empezar.
 
 ---
 
-## Estado actual del repo y qué hacer con él
+## Estructura del repo
 
-El repo trae una landing generada con Replit Agent que **está descartada**: usa otra paleta (ink oscuro + brass dorado) que ya no es la marca.
+La herencia de Replit ya fue eliminada. La aplicación Next.js vive en la raíz.
 
-**Conservar:** el repositorio, su historia y el proyecto de Vercel ya conectado.
+```
+app/
+  layout.tsx            # fuentes (next/font), metadata global, JSON-LD Organization, header con wordmark
+  globals.css           # ÚNICO lugar con valores de marca: tokens del design system como variables CSS
+  page.tsx              # home, nueve bloques según content/copy-home.md, JSON-LD Service ×4
+  manifiesto/page.tsx   # manifiesto completo, tratamiento editorial, JSON-LD Article
+  not-found.tsx         # 404 mínima en marca
+  sitemap.ts            # /sitemap.xml
+  robots.ts             # /robots.txt con permiso explícito a crawlers de LLM
+  opengraph-image.tsx   # imagen OG generada en build (usa assets/fonts/)
+  icon.svg              # favicon: isotipo
+components/
+  Wordmark.tsx          # relev + doble círculo + studio, SVG inline
+  Isotype.tsx           # doble círculo con animación handoff
+lib/
+  site.ts               # constantes del sitio (URL, correo, enlaces externos)
+  tokens.ts             # espejo mínimo de tokens para la imagen OG (sin CSS)
+content/                # fuentes de verdad de copy (ver tabla de arriba)
+docs/                   # design system v1
+assets/fonts/           # TTF de Plus Jakarta Sans solo para la imagen OG
+public/llms.txt
+```
 
-**Eliminar:**
-- El monorepo pnpm (`pnpm-workspace.yaml`, la estructura `artifacts/`)
-- `artifacts/api-server` — plantilla vacía de Replit
-- `artifacts/mockup-sandbox`
-- `.replit`, `.replitignore`, `replit.md`, `.npmrc`
-- La landing actual completa
+**Comandos:** `npm run dev` (desarrollo), `npm run build` (build estático), `npm run start` (servir el build).
 
-**Resultado:** aplicación Next.js en la raíz del repo, sin herencia de Replit.
+Detalles que no hay que romper:
+- `experimental.inlineCss` en `next.config.ts` mantiene el CSS inline en el HTML (LCP / Lighthouse)
+- Los overlines sobre fondo claro usan `teal-600` (no `teal-500`) por contraste AA
+- Los tokens viven en `app/globals.css` bajo `@theme` de Tailwind 4; los gradientes se derivan de los tokens de color
 
 ---
 

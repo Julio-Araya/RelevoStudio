@@ -63,7 +63,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <header className="mx-auto flex w-full max-w-[1080px] items-center px-7 pt-8">
-          <Link href="/" aria-label="Relevo Studio — inicio" className="text-[27px]">
+          <Link href="/" className="text-[27px]">
             <Wordmark />
           </Link>
         </header>

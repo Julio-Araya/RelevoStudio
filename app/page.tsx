@@ -46,7 +46,7 @@ const servicesJsonLd = {
 
 function Overline({ children, onDark = false }: { children: React.ReactNode; onDark?: boolean }) {
   return (
-    <p className={`rv-overline mb-4 ${onDark ? "text-teal-300" : "text-teal-500"}`}>
+    <p className={`rv-overline mb-4 ${onDark ? "text-teal-300" : "text-teal-600"}`}>
       {children}
     </p>
   );
