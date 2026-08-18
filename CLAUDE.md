@@ -20,15 +20,13 @@ Tres archivos mandan sobre cualquier criterio propio. Léelos antes de empezar.
 
 | Archivo | Qué manda |
 |---|---|
-| `relevo-design-system-v1.html` | **Toda la marca.** Paleta, tipografía, escala, radios, sombras, animaciones, componentes |
-| `relevostudio-copy-home.md` | **Todo el copy y la estructura de la home.** Bloques, orden, ritmo claro-oscuro |
-| `Relevo_Studio_Manifiesto_Fundacional_v2.md` | **Contenido de `/manifiesto`** |
+| `docs/relevo-design-system-v1.html` | **Toda la marca.** Paleta, tipografía, escala, radios, sombras, animaciones, componentes |
+| `content/copy-home.md` | **Todo el copy y la estructura de la home.** Bloques, orden, ritmo claro-oscuro |
+| `content/manifiesto.md` | **Contenido de `/manifiesto`** |
 
 **Regla dura: no dupliques tokens ni copy en el código.** Extrae los valores del design system a variables CSS y consúmelas. Si mañana sale una v2 del design system, tiene que haber un solo lugar donde actualizar. Nunca escribas un hex a mano en un componente.
 
 **Regla dura: no inventes ni edites copy.** El texto de los archivos de contenido va tal cual. Si algo no calza o falta, pregunta; no lo resuelvas escribiendo.
-
-Como primera tarea, mueve los archivos a `docs/relevo-design-system-v1.html`, `content/copy-home.md` y `content/manifiesto.md`, y actualiza esta tabla.
 
 ---
 
