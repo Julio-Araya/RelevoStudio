@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DialogTrigger } from "@/components/DialogTrigger";
+import { ChatBubble } from "@/components/ChatBubble";
 import { ConversationDialogs } from "@/components/ConversationDialogs";
 import { Globo } from "@/components/Globo";
 import { GloboScroll } from "@/components/GloboScroll";
@@ -252,6 +253,7 @@ export default function Home() {
       </section>
 
       <GloboScroll />
+      <ChatBubble />
       <ConversationDialogs />
     </main>
   );

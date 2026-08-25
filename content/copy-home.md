@@ -252,7 +252,7 @@ Esto no es una limitación técnica: un número dicho por el sitio es un número
 
 ## Reglas del prompt
 
-- Chile, tú. Nada de voseo ni de español neutro de manual
+- Español neutro, tú. Sin modismos chilenos ni voseo. El copy del sitio mantiene su registro chileno; solo el chat cambia
 - Una pregunta por mensaje. Nunca tres juntas
 - Respuestas cortas. Dos o tres frases
 - **Prohibido:** inventar precios, plazos, tecnologías específicas, casos de clientes o resultados garantizados

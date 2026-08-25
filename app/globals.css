@@ -252,6 +252,18 @@
     transform: translate(3px, -3px);
   }
 
+  /* Burbuja del chat: entra y sale con el easing firma; hover como el botón */
+  .rv-burbuja {
+    transition:
+      opacity 0.5s var(--ease-quart),
+      transform 0.5s var(--ease-quart),
+      box-shadow 0.3s var(--ease-quart);
+  }
+  .rv-burbuja:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
   /* 06 — Diálogos: chat y formulario */
   .rv-dialog {
     margin: auto;
