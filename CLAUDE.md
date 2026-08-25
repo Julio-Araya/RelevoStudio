@@ -16,13 +16,14 @@ No hay pruebas sociales que mostrar. No inventar ninguna.
 
 ## Fuentes de verdad
 
-Tres archivos mandan sobre cualquier criterio propio. Léelos antes de empezar.
+cuatro archivos mandan sobre cualquier criterio propio. Léelos antes de empezar.
 
 | Archivo | Qué manda |
 |---|---|
 | `docs/relevo-design-system-v1.html` | **Toda la marca.** Paleta, tipografía, escala, radios, sombras, animaciones, componentes |
 | `content/copy-home.md` | **Todo el copy, la estructura de la home, el formulario y el chat** (v2, siete actos) |
 | `content/manifiesto.md` | **Contenido de `/manifiesto`** |
+| `docs/globo-spec.md` | La capa gráfica de la home: globo, estados y scroll |
 
 **Regla dura: no dupliques tokens ni copy en el código.** Extrae los valores del design system a variables CSS y consúmelas. Nunca escribas un hex a mano en un componente.
 
@@ -38,7 +39,8 @@ La herencia de Replit ya fue eliminada. La aplicación Next.js vive en la raíz.
 app/
   layout.tsx            # fuentes (next/font), metadata global, JSON-LD Organization, header con wordmark
   globals.css           # ÚNICO lugar con valores de marca: tokens del design system como variables CSS
-  page.tsx              # home, siete actos según content/copy-home.md
+  globo.css             # capa gráfica del globo: progreso por acto, escena sticky, fallback (sin valores de marca)
+  page.tsx              # home, siete actos según content/copy-home.md; <main> es la escena del globo
   manifiesto/page.tsx   # manifiesto completo, tratamiento editorial, JSON-LD Article
   not-found.tsx         # 404 mínima en marca
   api/chat/route.ts     # chat calificador: Anthropic + tool registrar_lead que guarda y avisa
@@ -49,7 +51,10 @@ app/
   icon.svg              # favicon: isotipo
 components/
   Wordmark.tsx          # relev + doble círculo + studio, SVG inline
-  Isotype.tsx           # doble círculo con animación handoff
+  Isotype.tsx           # doble círculo con animación handoff (tonos: claro, ink, coral)
+  Globo.tsx             # SVG del globo, una sola vez en el DOM, en contenedor sticky (docs/globo-spec.md)
+  GloboScroll.tsx       # isla: fallback por IntersectionObserver donde no hay scroll-driven animations
+  ChatBubble.tsx        # isla: burbuja fija en coral que abre el chat al salir del acto 01
   DialogTrigger.tsx     # isla mínima: botón que abre chat o formulario (eventos relevo:*)
   ConversationDialogs.tsx # islas de chat y formulario sobre <dialog> nativo
 lib/
@@ -72,6 +77,8 @@ Detalles que no hay que romper:
 - `experimental.inlineCss` en `next.config.ts` mantiene el CSS inline en el HTML (LCP / Lighthouse)
 - Los overlines sobre fondo claro usan `teal-600` (no `teal-500`) por contraste AA
 - Los tokens viven en `app/globals.css` bajo `@theme` de Tailwind 4; los gradientes y los estilos de diálogo/inputs se derivan de los tokens
+- El globo depende de la estructura de la home: cada `<section>` lleva `data-acto="N"` (ahí se cuelga su `view-timeline`), el contenedor de texto de cada acto es `relative` (así se pinta sobre el globo) y las secciones con fondo no deben crear stacking context (sin `transform`, `z-index` ni `opacity`), porque su fondo tiene que quedar debajo del globo
+- El estado del globo es una función pura del scroll: variables `--p2…--p7` (una por acto, 0→1) y `calc()` en las piezas. Solo se animan `transform` y `opacity`; ningún `d` cambia
 
 ---
 
@@ -143,6 +150,10 @@ La especificación completa —flujo, reglas del prompt, campos, qué guarda— 
 - Registro: Supabase, tabla `leads`, escritura solo desde servidor, Row Level Security activa, sin lectura pública
 - Aviso por correo a `hello@relevostudio.com` con cada lead nuevo
 - El formulario envía por `fetch`, sin recarga. Anti-bots por campo trampa oculto, no captcha de terceros
+- El chat habla **español neutro**: tuteo, sin modismos chilenos, sin voseo.
+  El copy del sitio mantiene su registro chileno; solo el chat cambia.
+- Burbuja fija abajo a la derecha, en coral, con el isotipo. Aparece al pasar
+  el acto 01 y queda visible hasta el final. El botón del acto 07 abre el mismo panel.
 
 ---
 
@@ -191,3 +202,13 @@ Dominio en Cloudflare: el registro tiene que quedar en **DNS only, nube gris**. 
 - Preguntar antes de asumir. Este proyecto tiene decisiones ya tomadas y documentadas
 - Commits pequeños y descriptivos, en español
 - Al terminar, actualizar este archivo con la estructura real de carpetas y los comandos del proyecto
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
