@@ -251,6 +251,38 @@
     transform: translate(3px, -3px);
   }
 
+  /* 06 — Diálogos: chat y formulario */
+  .rv-dialog {
+    margin: auto;
+    width: min(92vw, 520px);
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--color-offwhite-100);
+    color: var(--color-ink-200);
+    box-shadow: var(--shadow-card);
+  }
+  .rv-dialog::backdrop {
+    background: color-mix(in srgb, var(--color-ink-200) 55%, transparent);
+  }
+
+  /* Campos de entrada */
+  .rv-input {
+    font: inherit;
+    letter-spacing: inherit;
+    background: var(--color-offwhite-200);
+    border: 1px solid color-mix(in srgb, var(--color-ink-200) 18%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+  }
+  .rv-input::placeholder {
+    color: var(--color-label);
+  }
+  .rv-input:focus-visible {
+    outline: 2px solid var(--color-coral-300);
+    outline-offset: 1px;
+  }
+
   /* Enlace de texto con flecha */
   .rv-link {
     display: inline-flex;
