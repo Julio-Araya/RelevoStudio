@@ -1,32 +1,21 @@
 # Relevo Studio
 
-> Estudio de IA aplicada en Santiago de Chile, para Latinoamérica. Construye los sistemas que relevan los procesos que hoy dependen de que alguien conteste, escriba o revise a mano. Entrega el sistema funcionando, no la presentación.
+> Estudio de IA aplicada en Santiago de Chile, para Latinoamérica. Construye sistemas —software, datos e IA— para empresas que ya funcionan y quieren crecer mejor: menos fricción y más capacidad en la operación.
 
-Relevo Studio trabaja con empresas pequeñas y medianas con un negocio que ya funciona, presupuesto real y procesos que dependen de que alguien conteste a mano. Su tesis: la inteligencia artificial no arregla una operación desordenada, la amplifica; una empresa que no es legible —para las máquinas ni para sí misma— no puede apalancarse en la IA.
+Su tesis: la inteligencia artificial no arregla una operación desordenada, la amplifica. Antes de que un modelo pueda ayudar a una empresa, tiene que poder entenderla: su catálogo, sus procesos, su información. Esa capa casi nadie la está construyendo; Relevo empieza por ahí.
 
-## Qué construye
+## Cómo trabaja
 
-- **Legibilidad**: catálogos, contenidos y datos preparados para ser leídos por buscadores, por modelos de lenguaje y por agentes conversacionales.
-- **Agentes**: sistemas conversacionales sobre WhatsApp, web o canales internos, que atienden, cotizan, califican y venden con el conocimiento real del negocio.
-- **Sistemas**: automatización y software a medida cuando el proceso no cabe en una herramienta existente, incluidas migraciones y reconstrucciones de plataforma.
-- **Fundaciones**: modelo de negocio, marca, go-to-market y pricing; no se vende suelta, se ordena antes de construir.
-
-## A qué renuncia
-
-- No vende horas ni personas.
-- No opera la máquina todos los meses: no gestiona campañas ni publica redes.
-- No entrega diagnósticos que no terminan en algo construido.
-
-## Producto propio
-
-- [Serchi](https://serchi.ai): reclutamiento y selección con inteligencia artificial.
-- [Workieo](https://workieo.com): control de asistencia por WhatsApp para equipos en terreno.
+- No empieza por la tecnología: primero entiende qué está frenando el negocio, después decide qué construir, qué automatizar y dónde la IA aporta.
+- El sistema empieza antes que la IA: conecta lo que ya existe y construye lo que falta — un agente, una herramienta, un flujo, una capa de datos. Primero la base, después la capa que se ve.
+- La forma Relevo: observa, construye y prueba, sobre datos, procesos y operación reales. Primero lo comprueba, después lo deja funcionando.
 
 ## Páginas
 
-- [Home](https://relevostudio.com/): qué hace el estudio y dónde suele estar el punto que releva.
+- [Home](https://relevostudio.com/): los siete actos — el punto, la tesis, el sistema y la forma de trabajo del estudio.
 - [Manifiesto Fundacional](https://relevostudio.com/manifiesto): en qué cree y a qué renuncia.
 
 ## Contacto
 
+- Chat y formulario de contacto en https://relevostudio.com/
 - Correo: hello@relevostudio.com (responde en menos de 24 horas)

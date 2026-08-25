@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s · Relevo Studio",
   },
   description:
-    "Relevo Studio construye los sistemas que relevan los procesos que hoy dependen de que alguien conteste a mano. Legibilidad, agentes y software a medida, desde Santiago de Chile para Latinoamérica.",
+    "Relevo Studio construye sistemas —software, datos e IA— para empresas que ya funcionan y quieren crecer mejor: una operación con menos fricción y más capacidad. Desde Santiago de Chile para Latinoamérica.",
   alternates: { canonical: "/" },
   openGraph: {
     siteName: "Relevo Studio",
@@ -43,7 +43,7 @@ const organizationJsonLd = {
   url: SITE.url,
   email: SITE.email,
   description:
-    "Estudio de IA aplicada. Construye los sistemas que relevan los procesos que hoy dependen de que alguien conteste a mano: legibilidad para máquinas y modelos de lenguaje, agentes conversacionales y software a medida.",
+    "Estudio de IA aplicada. Construye sistemas —software, datos e IA— para empresas que ya funcionan y quieren crecer mejor: una operación con menos fricción y más capacidad.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Santiago",
