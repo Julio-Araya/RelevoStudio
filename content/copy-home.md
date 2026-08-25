@@ -1,233 +1,279 @@
 # Copy — relevostudio.com
 
-*Fase 1 · Home + Manifiesto. Documento de contenido, no de diseño. Las notas de tratamiento son referenciales.*
+*Versión 2 · Siete actos. Reemplaza la versión anterior de nueve bloques.*
 
 ---
 
 ## Decisión de voz
 
-El sitio habla en **tercera persona impersonal**, no le habla de "tú" al visitante. Describe situaciones en vez de interpelar. Es lo que separa un sitio que se lee como criterio de uno que se lee como venta — y es lo que permite que el bloque 6 funcione sin sonar arrogante.
+El sitio **tutea**. Registro chileno neutro, nada de voseo.
+
+Frases cortas, muchas en línea propia. La cadencia es parte del argumento: un sitio que respira se lee como alguien que tiene las cosas claras.
 
 Relevo se presenta como estudio. No aparece nombre propio ni fotos de personas.
 
----
-
-## Bloque 1 · Apertura
-
-*Fondo off-white-200. Wordmark arriba a la izquierda. Titular grande, mucho aire.*
-
-**Overline**
-ESTUDIO DE IA APLICADA · SANTIAGO DE CHILE
-
-**Titular**
-En casi toda empresa hay un punto donde el proceso depende de que alguien conteste a mano.
-
-**Bajada**
-Relevo Studio construye el sistema que lo releva.
-
-**Acciones**
-`Ver el manifiesto ↗` · `Conversemos ↗`
+**Posicionamiento ancho:** software, datos e IA para empresas que ya funcionan. La especialización se muestra en el acto 04, no se declara en el titular.
 
 ---
 
-## Bloque 2 · El relevo
+## 01 — RELEVO
 
-*Fondo off-white-100. Dos columnas: a la izquierda el texto, a la derecha el isotipo con la animación `handoff` en loop.*
+*Fondo off-white-200. Wordmark. Titular grande, mucho aire.*
 
 **Overline**
-RE·LE·VO
+RELEVO STUDIO · SANTIAGO DE CHILE
 
 **Titular**
-Del latín *relevare*: hacer ligero lo que pesa.
+Hacer ligero lo que pesa.
 
 **Cuerpo**
-El relevo es el momento en que se entrega la posta. No es reemplazo ni delegación: es un traspaso que ocurre en movimiento, sin que nadie se detenga.
+Construimos sistemas para que tu operación avance con menos fricción y más capacidad.
 
-Eso es lo que hacemos. Tomamos procesos que hoy se sostienen porque una persona los hace a mano, y los pasamos a un sistema que los sostiene solo.
+Para empresas que ya funcionan y quieren crecer mejor con software, datos e IA.
 
-**Enlace**
-`Leer el manifiesto completo ↗`
+**Acciones**
+`Empezar conversación ↗` · `Leer el manifiesto ↗`
 
 ---
 
-## Bloque 3 · Dónde está el punto
+## 02 — EL PUNTO
 
-*Fondo off-white-200. Grilla de cinco, tipografía grande, sin íconos. Cada línea entra con `slide-in-from-bottom` escalonado.*
+*Fondo off-white-100. Las líneas entran escalonadas con `slide-in-from-bottom`.*
 
 **Overline**
-DÓNDE SUELE ESTAR
+EL PUNTO
 
 **Titular**
-Casi siempre es el mismo punto, con distinta cara.
+Tu empresa funciona.
+Pero demasiado trabajo todavía depende de alguien.
 
-**Los cinco**
+**Cuerpo**
+Alguien busca.
+Alguien responde.
+Alguien conecta lo que debería estar conectado.
+
+Y mientras tanto, una venta, una decisión o un cliente espera.
+
+**Grilla de ejemplos**
+*Tratamiento discreto, tipografía menor que el cuerpo. Son ejemplos, no el argumento.*
+
 - Alguien contesta más de cien mensajes al día.
 - La mitad del catálogo nunca alcanzó a describirse.
 - Los currículums se filtran a mano, uno por uno.
 - La asistencia se anota en un cuaderno.
 - Cada cotización pasa por la misma persona.
 
-**Cierre**
-Ese punto no se arregla contratando a alguien más. Se arregla construyendo el sistema que debía existir.
-
 ---
 
-## Bloque 4 · La tesis
+## 03 — LO QUE REALMENTE PASA
 
-*Panel ancho en ink-gradient. Poco texto, muy grande. Es el golpe del sitio.*
+*Fondo off-white-200.*
 
 **Overline**
-LO QUE CREEMOS
+LO QUE REALMENTE PASA
 
 **Titular**
-La inteligencia artificial no arregla una operación desordenada. La amplifica.
+El problema que se ve no siempre es el problema real.
 
 **Cuerpo**
-Instalar un agente conversacional sobre un catálogo ilegible no produce mejores respuestas: produce fracasos más elegantes.
+Por eso no empezamos por la tecnología.
 
-Una empresa que no es legible no puede apalancarse en la IA. Ni su catálogo para las máquinas, ni su operación para sí misma. El trabajo empieza abajo, en los datos y en la estructura, no en la capa que se ve.
+Primero entendemos qué está frenando el negocio.
+Después decidimos qué construir, qué automatizar y dónde la IA aporta.
 
-Hacer legible la empresa es la mitad del trabajo. Y casi nadie la está haciendo.
-
----
-
-## Bloque 5 · Qué construimos
-
-*Fondo off-white-100. Las dos primeras encadenadas visualmente —comparten un borde o una línea que las une— para que se lea la dependencia. Las otras dos separadas.*
-
-**Overline**
-QUÉ CONSTRUIMOS
-
-### Legibilidad
-Catálogos, contenidos y datos preparados para ser leídos por buscadores, por modelos de lenguaje y por agentes conversacionales.
-
-Es la capa que casi nadie tiene y sin la cual todo lo demás falla.
-
-### Agentes
-Sistemas conversacionales sobre WhatsApp, web o canales internos, que atienden, cotizan, califican y venden con el conocimiento real del negocio.
-
-*Depende de la anterior.* Un agente sobre un catálogo roto es un fracaso con mejor redacción.
-
-### Sistemas
-Automatización y software a medida cuando el proceso no cabe en una herramienta existente. Incluye migrar o reconstruir la plataforma cuando la base actual no aguanta lo que se va a montar encima.
-
-### Fundaciones
-Modelo de negocio, marca, go-to-market, pricing.
-
-*No se vende suelta.* Es lo que se ordena antes de construir, cuando lo que está roto no es el sistema sino la definición.
+Antes de sumar otra persona al mismo proceso, vale la pena preguntarse si el proceso debería cambiar.
 
 ---
 
-## Bloque 6 · La decisión
+## 04 — LO QUE NADIE ESTÁ MIRANDO
 
-*Fondo off-white-200. Titular grande, cuerpo corto, mucho espacio alrededor. Sin panel de color: acá la sobriedad es el tono.*
+*Panel ancho en ink-gradient. Poco texto, muy grande. Primer golpe oscuro del sitio.*
 
 **Overline**
-LA DECISIÓN
+LO QUE NADIE ESTÁ MIRANDO
 
 **Titular**
-Casi siempre la decisión ya está tomada.
+La inteligencia artificial no arregla una operación desordenada.
+La amplifica.
 
 **Cuerpo**
-Cuando una empresa publica una vacante, ya reconoció el problema y ya aprobó el presupuesto. La única pregunta abierta es cómo se resuelve: con alguien haciendo el trabajo a mano, o con un sistema que lo deje resuelto.
+Un agente conversacional montado sobre datos ilegibles no da mejores respuestas.
+Da fracasos más elegantes.
 
-A veces la respuesta correcta es contratar. Cuando lo es, lo decimos.
+Antes de que un modelo pueda ayudarte, tiene que poder entenderte.
+Tu catálogo, tus procesos, tu información.
 
----
-
-## Bloque 7 · Lo que no hacemos
-
-*Tres paneles de color sólido con la flecha ↙ decorativa. Coral, teal, ink.*
-
-**Overline**
-LAS RENUNCIAS
-
-**Titular**
-Toda posición real tiene una renuncia.
-
-**Panel coral — No vendemos horas ni personas**
-Relevo no se contrata por disponibilidad. Si lo que se necesita es alguien que esté, hay que contratar a alguien. Nosotros dejamos el sistema.
-
-**Panel teal — No operamos la máquina todos los meses**
-No gestionamos campañas, no publicamos redes, no somos un equipo de marketing tercerizado. Construimos, entregamos funcionando y enseñamos a operarlo.
-
-**Panel ink — No entregamos diagnósticos que no terminan en algo construido**
-Un informe que nadie implementa es un costo, no un servicio.
+Esa capa casi nadie la está construyendo.
+Nosotros empezamos por ahí.
 
 ---
 
-## Bloque 8 · La prueba
+## 05 — EL SISTEMA
 
-*Fondo off-white-100. Dos bloques con borde izquierdo, enlaces externos con ↗.*
+*Fondo off-white-100.*
 
 **Overline**
-LA PRUEBA
+EL SISTEMA
 
 **Titular**
-No mostramos portafolio. Mostramos producto propio.
+El sistema empieza antes que la IA.
 
-**Bajada**
-Casi todo lo que construimos está bajo acuerdo de confidencialidad. Estos son nuestros: los construimos de punta a punta y se venden por su cuenta.
+**Cuerpo**
+Conectamos lo que ya existe.
+Construimos lo que falta.
 
-### Serchi
-Reclutamiento y selección con inteligencia artificial. Filtra, ordena y entiende candidatos a la velocidad a la que llegan.
-`serchi.ai ↗`
+Puede ser un agente.
+Una herramienta.
+Un flujo.
+Una capa de datos.
 
-### Workieo
-Control de asistencia por WhatsApp para empresas con personal en terreno. Sin reloj biométrico, sin aplicaciones nuevas.
-`workieo.com ↗`
+La forma cambia. El orden no: primero la base, después la capa que se ve.
 
 **Cierre**
-Están acá por una sola razón: son la evidencia de que construimos sistemas completos, no piezas sueltas.
+Más conversión.
+Más capacidad para el equipo.
+Una operación preparada para trabajar con IA.
 
 ---
 
-## Bloque 9 · Conversemos
+## 06 — LA FORMA RELEVO
 
-*Fondo ink-gradient. Correo grande y clicable. Cierra el ritmo claro-oscuro del sitio.*
+*Fondo off-white-200. Los tres verbos como componente, no como lista.*
+
+**Overline**
+LA FORMA RELEVO
 
 **Titular**
-Conversemos.
+Construimos lo que el día a día nunca alcanza a construir.
+
+**Los tres verbos**
+Observamos.
+Construimos.
+Probamos.
 
 **Cuerpo**
-La primera conversación parte con algo hecho: revisamos el caso antes de la reunión y llegamos con un diagnóstico propio.
+Sobre datos, procesos y operación reales.
 
-**Contacto**
+Primero lo comprobamos.
+Después lo dejamos funcionando.
+
+---
+
+## 07 — CONVERSACIÓN
+
+*Fondo ink-gradient. Segundo y último golpe oscuro. Cierra el sitio.*
+
+**Overline**
+CONVERSACIÓN
+
+**Titular**
+Hay una parte de tu operación que podría estar funcionando mucho mejor.
+Encontrémosla.
+
+**Cuerpo**
+Cuéntanos qué está pasando.
+Nosotros hacemos las preguntas.
+Tú no necesitas tener clara la solución.
+
+**Acciones**
+`Empezar conversación ↗` — abre el chat
+`Prefiero escribir ↗` — abre el formulario
+
+**Alternativa visible**
 `hello@relevostudio.com`
-
-**Nota**
-Respondemos en menos de 24 horas.
 
 **Pie**
 RELEVO STUDIO · SANTIAGO DE CHILE · DESDE ACÁ, PARA LATINOAMÉRICA · 2026
+`Manifiesto` · `hello@relevostudio.com`
 
 ---
 
 ## Ritmo del sitio
 
-| Bloque | Fondo |
+| Acto | Fondo |
 |---|---|
-| 1 Apertura | off-white-200 |
-| 2 El relevo | off-white-100 |
-| 3 Dónde está el punto | off-white-200 |
-| 4 La tesis | **ink-gradient** |
-| 5 Qué construimos | off-white-100 |
-| 6 La decisión | off-white-200 |
-| 7 Las renuncias | paneles coral / teal / ink |
-| 8 La prueba | off-white-100 |
-| 9 Conversemos | **ink-gradient** |
+| 01 Relevo | off-white-200 |
+| 02 El punto | off-white-100 |
+| 03 Lo que realmente pasa | off-white-200 |
+| 04 Lo que nadie está mirando | **ink-gradient** |
+| 05 El sistema | off-white-100 |
+| 06 La forma Relevo | off-white-200 |
+| 07 Conversación | **ink-gradient** |
 
-Dos golpes oscuros, en el bloque 4 y en el 9. El resto respira en claro.
+Dos golpes oscuros. El resto respira en claro.
 
 ---
 
-## Página `/manifiesto`
+# Formulario de contacto
 
-Publica el manifiesto v2 completo, con tratamiento editorial: columna angosta, tipografía grande, mucho interlineado, sin cajas ni tarjetas. Se lee como un documento, no como una landing.
+Puerta para quien prefiere no chatear. Corto y sin fricción.
 
-**Metadata:** es la página con más texto sustantivo del sitio y la que más probabilidad tiene de ser citada por un modelo de lenguaje. Merece su propio JSON-LD y una descripción cuidada.
+**Campos**
 
-**Cierre de la página:** enlace de vuelta a la home y a `hello@`.
+| Campo | Obligatorio | Notas |
+|---|---|---|
+| Nombre | Sí | |
+| Correo | Sí | Validar formato |
+| WhatsApp | Sí | Formato chileno e internacional. Guardar normalizado |
+| Empresa | No | |
+| ¿Qué quieres resolver? | Sí | Área de texto, mínimo 20 caracteres |
+
+**Texto de apoyo bajo el título**
+Cuéntanos en tus palabras. No hace falta que sea preciso.
+
+**Botón**
+`Enviar ↗`
+
+**Confirmación**
+Recibido. Te respondemos en menos de 24 horas.
+
+**Reglas**
+- Sin `<form>` con recarga: envío por `fetch` a un endpoint propio
+- Protección anti-bots por campo trampa oculto, no captcha de terceros
+- Nunca prometer plazos distintos a las 24 horas que dice el sitio
+
+---
+
+# Chat calificador
+
+**Qué hace:** entiende el problema, pregunta lo que falta, captura el contacto y deja un lead estructurado.
+
+**Qué NO hace:** dar precios, plazos, rangos ni alcances. Ni siquiera aproximados.
+
+Esto no es una limitación técnica: un número dicho por el sitio es un número dicho por Relevo. El chat prepara la cotización; no la emite.
+
+## Flujo
+
+1. **Apertura.** *"Cuéntame qué está pasando en tu operación. Con lo que se te venga a la cabeza basta."*
+2. **Entender.** Dos o tres preguntas, una a la vez. Qué proceso, quién lo hace hoy, qué volumen, qué pasa si no se resuelve.
+3. **Devolver.** Reformula el problema en una frase. Es el momento que genera confianza: el cliente ve que lo entendieron.
+4. **Capturar.** Pide nombre, correo y WhatsApp. Empresa si se da.
+5. **Cerrar.** *"Listo. Revisamos tu caso y te llega una propuesta con números en 48 horas."*
+
+## Reglas del prompt
+
+- Chile, tú. Nada de voseo ni de español neutro de manual
+- Una pregunta por mensaje. Nunca tres juntas
+- Respuestas cortas. Dos o tres frases
+- **Prohibido:** inventar precios, plazos, tecnologías específicas, casos de clientes o resultados garantizados
+- Si preguntan por precio: *"Eso depende de lo que encontremos. Por eso partimos con un diagnóstico."*
+- Si el caso queda fuera de alcance, decirlo y ofrecer el correo
+- No insistir con el contacto más de dos veces. Si no lo quiere dar, dejar `hello@` y cerrar bien
+- Modelo `claude-haiku-4-5-20251001`, `max_tokens` 500, sin streaming, API key solo en servidor
+
+## Qué guarda
+
+Al cerrar, además de la transcripción, un registro estructurado: nombre, correo, WhatsApp, empresa, problema en palabras del cliente, problema reformulado, proceso afectado, volumen si se mencionó, y origen (chat o formulario).
+
+---
+
+# Persistencia
+
+**Supabase.** Una tabla `leads` con los campos de arriba, más marca de tiempo y estado.
+
+- Escritura solo desde funciones de servidor, nunca desde el navegador
+- Row Level Security activa, sin acceso público de lectura
+- Aviso por correo a `hello@relevostudio.com` con cada lead nuevo
 
 ---
 
@@ -235,4 +281,4 @@ Publica el manifiesto v2 completo, con tratamiento editorial: columna angosta, t
 
 - Páginas por línea de servicio, cuando haya casos que contar
 - `/auditoria` con el motor automático
-- Chat calificador en el bloque 9
+- Panel interno de leads
