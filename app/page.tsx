@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { DialogTrigger } from "@/components/DialogTrigger";
 import { ConversationDialogs } from "@/components/ConversationDialogs";
+import { Globo } from "@/components/Globo";
+import { GloboScroll } from "@/components/GloboScroll";
 import { SITE } from "@/lib/site";
 
 function Overline({ children, onDark = false }: { children: React.ReactNode; onDark?: boolean }) {
@@ -13,9 +15,17 @@ function Overline({ children, onDark = false }: { children: React.ReactNode; onD
 
 export default function Home() {
   return (
-    <main>
+    <main className="globo-escena">
+      {/* Capa gráfica: el globo, sticky detrás del texto de los siete actos.
+          Los fondos de sección quedan debajo; los contenedores de texto
+          (relative) quedan encima. */}
+      <Globo />
+
       {/* Acto 01 · Relevo — off-white-200 */}
-      <section className="mx-auto max-w-[1080px] px-7 pb-24 pt-20 md:pb-32 md:pt-28">
+      <section
+        data-acto="1"
+        className="relative mx-auto max-w-[1080px] px-7 pb-24 pt-20 md:pb-32 md:pt-28"
+      >
         <Overline>Relevo Studio · Santiago de Chile</Overline>
         <h1 className="rv-header-1 max-w-[880px]">Hacer ligero lo que pesa.</h1>
         <div className="mt-6 max-w-[620px] space-y-4 text-muted">
@@ -39,8 +49,8 @@ export default function Home() {
       </section>
 
       {/* Acto 02 · El punto — off-white-100, líneas escalonadas */}
-      <section className="border-y border-ink-200/12 bg-offwhite-100">
-        <div className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+      <section data-acto="2" className="border-y border-ink-200/12 bg-offwhite-100">
+        <div className="relative mx-auto max-w-[1080px] px-7 py-20 md:py-28">
           <Overline>El punto</Overline>
           <h2 className="rv-header-4 max-w-[820px]">
             <span className="rv-reveal block">Tu empresa funciona.</span>
@@ -77,7 +87,7 @@ export default function Home() {
       </section>
 
       {/* Acto 03 · Lo que realmente pasa — off-white-200 */}
-      <section className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+      <section data-acto="3" className="relative mx-auto max-w-[1080px] px-7 py-20 md:py-28">
         <Overline>Lo que realmente pasa</Overline>
         <h2 className="rv-header-4 max-w-[760px]">
           El problema que se ve no siempre es el problema real.
@@ -98,8 +108,8 @@ export default function Home() {
       </section>
 
       {/* Acto 04 · Lo que nadie está mirando — ink-gradient, primer golpe oscuro */}
-      <section className="bg-ink-gradient text-offwhite-200">
-        <div className="mx-auto max-w-[1080px] px-7 py-24 md:py-36">
+      <section data-acto="4" className="bg-ink-gradient text-offwhite-200">
+        <div className="relative mx-auto max-w-[1080px] px-7 py-24 md:py-36">
           <Overline onDark>Lo que nadie está mirando</Overline>
           <h2 className="rv-header-4 max-w-[900px]">
             La inteligencia artificial no arregla una operación desordenada.
@@ -129,8 +139,8 @@ export default function Home() {
       </section>
 
       {/* Acto 05 · El sistema — off-white-100 */}
-      <section className="border-b border-ink-200/12 bg-offwhite-100">
-        <div className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+      <section data-acto="5" className="border-b border-ink-200/12 bg-offwhite-100">
+        <div className="relative mx-auto max-w-[1080px] px-7 py-20 md:py-28">
           <Overline>El sistema</Overline>
           <h2 className="rv-header-4 max-w-[760px]">
             El sistema empieza antes que la IA.
@@ -166,7 +176,7 @@ export default function Home() {
       </section>
 
       {/* Acto 06 · La forma Relevo — off-white-200, los tres verbos como componente */}
-      <section className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+      <section data-acto="6" className="relative mx-auto max-w-[1080px] px-7 py-20 md:py-28">
         <Overline>La forma Relevo</Overline>
         <h2 className="rv-header-4 max-w-[820px]">
           Construimos lo que el día a día nunca alcanza a construir.
@@ -195,8 +205,8 @@ export default function Home() {
       </section>
 
       {/* Acto 07 · Conversación — ink-gradient, segundo y último golpe oscuro */}
-      <section className="bg-ink-gradient text-offwhite-200">
-        <div className="mx-auto max-w-[1080px] px-7 pb-14 pt-24 md:pt-36">
+      <section data-acto="7" className="bg-ink-gradient text-offwhite-200">
+        <div className="relative mx-auto max-w-[1080px] px-7 pb-14 pt-24 md:pt-36">
           <Overline onDark>Conversación</Overline>
           <h2 className="rv-header-4 max-w-[900px]">
             Hay una parte de tu operación que podría estar funcionando mucho
@@ -241,6 +251,7 @@ export default function Home() {
         </div>
       </section>
 
+      <GloboScroll />
       <ConversationDialogs />
     </main>
   );

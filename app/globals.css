@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./globo.css";
 
 /*
  * Tokens de marca — extraídos de docs/relevo-design-system-v1.html (v1).
