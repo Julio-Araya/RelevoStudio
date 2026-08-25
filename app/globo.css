@@ -184,7 +184,11 @@
   .globo-capa {
     animation-name: globo-p2, globo-p3, globo-p4, globo-p5, globo-p6, globo-p7;
     animation-timeline: --acto-2, --acto-3, --acto-4, --acto-5, --acto-6, --acto-7;
-    animation-range: cover 15% cover 65%;
+    /* El tramo corre mientras el borde superior del acto va del centro del
+       viewport (50vh desde abajo) al 15% superior (85vh): el acto toma la
+       pantalla. En longitudes de viewport, no en % del acto, para que el
+       hero en reposo no arrastre el estado del acto 02. */
+    animation-range: cover 50vh cover 85vh;
     animation-timing-function: var(--ease-quart);
     animation-fill-mode: both;
   }
