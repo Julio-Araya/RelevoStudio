@@ -30,20 +30,48 @@ Tres archivos mandan sobre cualquier criterio propio. Léelos antes de empezar.
 
 ---
 
-## Estado actual del repo y qué hacer con él
+## Estructura del repo
 
-El repo trae una landing generada con Replit Agent que **está descartada**: usa otra paleta (ink oscuro + brass dorado) que ya no es la marca.
+La herencia de Replit ya fue eliminada. La aplicación Next.js vive en la raíz.
 
-**Conservar:** el repositorio, su historia y el proyecto de Vercel ya conectado.
+```
+app/
+  layout.tsx            # fuentes (next/font), metadata global, JSON-LD Organization, header con wordmark
+  globals.css           # ÚNICO lugar con valores de marca: tokens del design system como variables CSS
+  page.tsx              # home, siete actos según content/copy-home.md
+  manifiesto/page.tsx   # manifiesto completo, tratamiento editorial, JSON-LD Article
+  not-found.tsx         # 404 mínima en marca
+  api/chat/route.ts     # chat calificador: Anthropic + tool registrar_lead que guarda y avisa
+  api/lead/route.ts     # recepción del formulario: validación, campo trampa, guarda y avisa
+  sitemap.ts            # /sitemap.xml
+  robots.ts             # /robots.txt con permiso explícito a crawlers de LLM
+  opengraph-image.tsx   # imagen OG generada en build (usa assets/fonts/)
+  icon.svg              # favicon: isotipo
+components/
+  Wordmark.tsx          # relev + doble círculo + studio, SVG inline
+  Isotype.tsx           # doble círculo con animación handoff
+  DialogTrigger.tsx     # isla mínima: botón que abre chat o formulario (eventos relevo:*)
+  ConversationDialogs.tsx # islas de chat y formulario sobre <dialog> nativo
+lib/
+  site.ts               # constantes del sitio (URL, correo)
+  leads.ts              # normalización de WhatsApp, escritura en Supabase, aviso por Resend (server-only)
+  tokens.ts             # espejo mínimo de tokens para la imagen OG (sin CSS)
+content/                # fuentes de verdad de copy (ver tabla de arriba)
+docs/                   # design system v1
+assets/fonts/           # TTF de Plus Jakarta Sans solo para la imagen OG
+public/llms.txt
+```
 
-**Eliminar:**
-- El monorepo pnpm (`pnpm-workspace.yaml`, la estructura `artifacts/`)
-- `artifacts/api-server` — plantilla vacía de Replit
-- `artifacts/mockup-sandbox`
-- `.replit`, `.replitignore`, `replit.md`, `.npmrc`
-- La landing actual completa
+**Comandos:** `npm run dev` (desarrollo), `npm run build` (build), `npm run start` (servir el build).
 
-**Resultado:** aplicación Next.js en la raíz del repo, sin herencia de Replit.
+**Variables de entorno** (en Vercel y en `.env.local`, nunca en el repo): `ANTHROPIC_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, `RESEND_FROM`.
+
+**Infraestructura:** proyecto Supabase «Relevo Studio» (`vpcgifpwmntghfyuucbf`, región `sa-east-1`), tabla `leads` con RLS activa y sin políticas (solo escribe el servidor con la service role key). Correo transaccional por Resend.
+
+Detalles que no hay que romper:
+- `experimental.inlineCss` en `next.config.ts` mantiene el CSS inline en el HTML (LCP / Lighthouse)
+- Los overlines sobre fondo claro usan `teal-600` (no `teal-500`) por contraste AA
+- Los tokens viven en `app/globals.css` bajo `@theme` de Tailwind 4; los gradientes y los estilos de diálogo/inputs se derivan de los tokens
 
 ---
 
@@ -152,7 +180,7 @@ La especificación completa —flujo, reglas del prompt, campos, qué guarda— 
 
 Vercel ya está conectado a este repo (`relevo-studio-snowy.vercel.app`). Al mover la app a la raíz, revisar que **Root Directory** quede vacío y que el preset sea el correcto para Next.js.
 
-Variables de entorno a cargar en Vercel: clave de Anthropic, URL y clave de servicio de Supabase. No se heredan del repo.
+Variables de entorno a cargar en Vercel: clave de Anthropic, URL y clave de servicio de Supabase, clave y remitente de Resend. No se heredan del repo.
 
 Dominio en Cloudflare: el registro tiene que quedar en **DNS only, nube gris**. Con el proxy activo Vercel no valida el certificado y el sitio queda caído.
 
