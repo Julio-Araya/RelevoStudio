@@ -39,7 +39,7 @@ La herencia de Replit ya fue eliminada. La aplicación Next.js vive en la raíz.
 app/
   layout.tsx            # fuentes (next/font), metadata global, JSON-LD Organization, header con wordmark
   globals.css           # ÚNICO lugar con valores de marca: tokens del design system como variables CSS
-  globo.css             # capa gráfica del globo: progreso por acto, escena sticky, fallback (sin valores de marca)
+  globo.css             # capa gráfica: progreso por acto, cruces de imágenes, desplazamiento lento, velos, fallback (sin valores de marca)
   page.tsx              # home, siete actos según content/copy-home.md; <main> es la escena del globo
   manifiesto/page.tsx   # manifiesto completo, tratamiento editorial, JSON-LD Article
   not-found.tsx         # 404 mínima en marca
@@ -52,8 +52,8 @@ app/
 components/
   Wordmark.tsx          # relev + doble círculo + studio, SVG inline
   Isotype.tsx           # doble círculo con animación handoff (tonos: claro, ink, coral)
-  Globo.tsx             # SVG del globo, una sola vez en el DOM, en contenedor sticky (docs/globo-spec.md)
-  GloboScroll.tsx       # isla: fallback por IntersectionObserver donde no hay scroll-driven animations
+  Globo.tsx             # siete <picture> del globo (AVIF/WebP, 4:5 en móvil) en contenedor sticky; solo la 01 con prioridad
+  GloboScroll.tsx       # isla: carga diferida de las imágenes 02–07 y fallback por IntersectionObserver (sin timeline-scope o con reduced-motion)
   ChatBubble.tsx        # isla: burbuja fija en coral que abre el chat al salir del acto 01
   DialogTrigger.tsx     # isla mínima: botón que abre chat o formulario (eventos relevo:*)
   ConversationDialogs.tsx # islas de chat y formulario sobre <dialog> nativo
@@ -64,10 +64,12 @@ lib/
 content/                # fuentes de verdad de copy (ver tabla de arriba)
 docs/                   # design system v1
 assets/fonts/           # TTF de Plus Jakarta Sans solo para la imagen OG
+scripts/imagenes.mjs    # genera las variantes de public/actos/ con sharp (npm run imagenes)
+public/actos/           # siete PNG originales (fuente) + AVIF/WebP en 1920/1280/828/640 y recortes 4:5 en 828/640
 public/llms.txt
 ```
 
-**Comandos:** `npm run dev` (desarrollo), `npm run build` (build), `npm run start` (servir el build).
+**Comandos:** `npm run dev` (desarrollo), `npm run build` (build), `npm run start` (servir el build), `npm run imagenes` (regenerar las variantes de las imágenes del globo a partir de los PNG).
 
 **Variables de entorno** (en Vercel y en `.env.local`, nunca en el repo): `ANTHROPIC_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, `RESEND_FROM`.
 
@@ -77,8 +79,13 @@ Detalles que no hay que romper:
 - `experimental.inlineCss` en `next.config.ts` mantiene el CSS inline en el HTML (LCP / Lighthouse)
 - Los overlines sobre fondo claro usan `teal-600` (no `teal-500`) por contraste AA
 - Los tokens viven en `app/globals.css` bajo `@theme` de Tailwind 4; los gradientes y los estilos de diálogo/inputs se derivan de los tokens
-- El globo depende de la estructura de la home: cada `<section>` lleva `data-acto="N"` (ahí se cuelga su `view-timeline`), el contenedor de texto de cada acto es `relative` (así se pinta sobre el globo) y las secciones con fondo no deben crear stacking context (sin `transform`, `z-index` ni `opacity`), porque su fondo tiene que quedar debajo del globo
-- El estado del globo es una función pura del scroll: variables `--p2…--p7` (una por acto, 0→1) y `calc()` en las piezas. Solo se animan `transform` y `opacity`; ningún `d` cambia
+- El globo depende de la estructura de la home: cada `<section>` lleva `data-acto="N"` (ahí se cuelga su `view-timeline`), es `relative` y **no lleva fondo ni color de texto propio**. El velo es un solo `div` en la capa sticky, y su color y el del texto se interpolan con `--oscuro` (derivada del progreso: 1 en los actos 04 y 07). Así no hay ningún borde horizontal entre secciones
+- El estado es una función pura del scroll: variables `--p2…--p7` animadas en `<main>`, cada una contra el acto anterior en `cover 50%→90%` (el cruce empieza en el centro del acto y dura 40 % de su tramo). La imagen N tiene opacidad `pN − p(N+2)`: entra encima de la anterior y solo se apaga cuando la siguiente ya la cubrió. Solo se animan `opacity` y `transform`
+- Colores de texto de la home: `rv-cuerpo`, `rv-destacado`, `rv-overline-acto`, `rv-pie` (definidos en `globo.css` a partir de `--oscuro`). No usar clases `text-*` para el texto de los actos, porque dejarían de conmutar con el velo
+- Los overlines van en coral-400 (eyebrow del design system) sobre claro y coral-200 sobre ink. Coral-400 a 12 px sobre off-white da 3.9:1, bajo AA: decisión de marca asumida, es lo único que Lighthouse marca en accesibilidad
+- Los paneles de color sólido con flecha ↙ (`rv-panel`, design system 06) viven en el acto 06 con los tres verbos
+- Las imágenes 02–07 no pueden ir con `loading="lazy"`: la capa sticky siempre está en el viewport y se descargarían las siete de golpe. Van con `data-srcset` y `GloboScroll` las promueve acto por acto
+- La legibilidad se resuelve con el velo (color de fondo del acto, translúcido), nunca oscureciendo ni filtrando las imágenes. Densidades verificadas por contraste AA sobre el píxel más desfavorable de cada serie
 
 ---
 

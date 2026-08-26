@@ -190,7 +190,7 @@
   }
   .rv-header-4 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 1.08;
     font-size: clamp(2rem, 4.6vw, 48px);
@@ -222,6 +222,60 @@
     font-size: 12px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
+  }
+
+  /* 06 — Panel de color sólido con flecha ↙ decorativa */
+  .rv-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 180px;
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    color: var(--color-offwhite-200);
+    box-shadow: var(--shadow-card);
+  }
+  .rv-panel .rv-panel-flecha {
+    align-self: flex-end;
+    font-family: var(--font-display);
+    font-size: 24px;
+    line-height: 1;
+    opacity: 0.85;
+  }
+  .rv-panel .rv-panel-titulo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  /* 06 — Pills (etiquetas, no enlaces): fila que envuelve en angosto */
+  .rv-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .rv-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: calc(infinity * 1px);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    background: var(--color-ink-200);
+    color: var(--color-coral-100);
+  }
+  /* Entradilla pequeña que precede a una fila de pills */
+  .rv-entradilla {
+    font-size: 14px;
+    font-weight: 500;
+    color: color-mix(in srgb, currentColor 60%, transparent);
   }
 
   /* 06 — Botón pill con flecha */
