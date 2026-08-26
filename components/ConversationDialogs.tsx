@@ -102,7 +102,7 @@ function ChatDialog() {
     <dialog ref={ref} className="rv-dialog" aria-label="Chat con Relevo Studio">
       <div className="relative flex h-[70vh] max-h-[640px] flex-col p-6 md:p-8">
         <CloseButton onClick={() => ref.current?.close()} />
-        <p className="rv-overline text-teal-600">Conversación</p>
+        <p className="rv-overline text-coral-400">Conversación</p>
         <div ref={listRef} className="mt-5 flex-1 space-y-3 overflow-y-auto pr-1">
           <Bubble role="assistant">{APERTURA}</Bubble>
           {messages.map((message, index) => (
@@ -210,7 +210,7 @@ function FormDialog() {
           </div>
         ) : (
           <>
-            <p className="rv-overline text-teal-600">Prefiero escribir</p>
+            <p className="rv-overline text-coral-400">Prefiero escribir</p>
             <p className="mt-4 text-muted">
               Cuéntanos en tus palabras. No hace falta que sea preciso.
             </p>

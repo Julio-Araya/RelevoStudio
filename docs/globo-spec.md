@@ -1,6 +1,8 @@
 # El globo — especificación visual
 
-*Anexo del CLAUDE.md. Capa gráfica de la home de relevostudio.com.*
+*Versión 2. Anexo del CLAUDE.md. Capa gráfica de la home de relevostudio.com.*
+
+> **Cambio respecto de la v1:** la capa gráfica ya no es un SVG de piezas animadas. Son siete imágenes fotográficas, una por acto, que se cruzan con el scroll. Si existe un componente de globo en SVG, se reemplaza. El motor de animación por variables de progreso se conserva: lo único que cambia es qué se anima.
 
 ---
 
@@ -8,160 +10,99 @@
 
 El globo aerostático es la marca dibujada: *hacer ligero lo que pesa* es lo que hace un globo.
 
-**No es una ilustración nueva.** La envoltura son los dos círculos del logotipo a escala grande. Cuando el globo se abre, lo que se separa son las dos *o* de `relevo`. Cuando vuelve a armarse, el logotipo se reconstruye.
+El relato avanza con el scroll. El globo empieza entero, se carga de lastre, se abre para mostrar de qué está hecho, revela su base, se vuelve a armar desde abajo, se prueba y finalmente sube.
 
-**El globo nunca se rompe.** Se abre para mostrar de qué está hecho. Eso es el diagnóstico, no una falla. La diferencia entre "se desarma" y "se abre" es toda la diferencia de mensaje, y tiene que notarse en el movimiento: las piezas se separan con orden, nunca caen ni giran al azar.
+**El globo nunca se rompe.** Se abre. La diferencia entre "se desarma" y "se abre" es todo el mensaje, y por eso las imágenes muestran piezas intactas y ordenadas, nunca escombros.
+
+---
+
+## Las imágenes
+
+Siete archivos en `public/actos/`. Formato original PNG, 1672×941, ya normalizadas en brillo y color como serie.
+
+| Acto | Archivo | Qué muestra |
+|---|---|---|
+| 01 Relevo | `acto-01-completo.png` | Globo completo, alto, sereno. Tercio izquierdo libre |
+| 02 El punto | `acto-02-lastres.png` | Globo bajo, con bolsas de lastre colgando |
+| 03 Lo que realmente pasa | `acto-03-abre.png` | Envoltura abierta en piezas, ordenadas, intactas |
+| 04 Lo que nadie está mirando | `acto-04-base.png` | Quemador nítido en primer plano, envoltura difusa detrás |
+| 05 El sistema | `acto-05-arma.png` | Las piezas convergiendo. Es el acto 03 espejado |
+| 06 La forma Relevo | `acto-06-prueba.png` | Globo completo en tierra, amarrado, a punto de salir |
+| 07 Conversación | `acto-07-sube.png` | Globo cerca del borde superior, mucho cielo. Recorte del acto 01 |
+
+**El 05 es el 03 espejado y el 07 es un recorte del 01.** Es deliberado: el sol cambia de lado en el 05, y que el sitio abra y cierre con el mismo globo es un cierre de arco. No hay que "corregirlo" regenerando nada.
 
 ---
 
 ## Reglas duras
 
-**Es capa visual, no contenido.** Va detrás del texto, en `position: sticky`. Si el JavaScript falla o el navegador no soporta scroll-driven animations, el sitio se lee completo igual. El globo queda en su estado inicial y no pasa nada.
+**Es capa visual, no contenido.** Va detrás del texto. Si las imágenes no cargan o no hay JavaScript, el HTML de los siete actos llega completo y el sitio se lee entero.
 
-**Nunca compite con el texto.** Opacidad máxima 100% solo cuando no hay texto encima; bajo bloques de copy, la capa baja a ~35%.
+**Nunca compite con el texto.** Ver la sección de legibilidad más abajo: es el punto donde esto se gana o se pierde.
 
-**`prefers-reduced-motion`**: sin animación. El globo queda estático en el estado completo del acto 01.
+**`prefers-reduced-motion`**: sin cruces ni desplazamiento. Cada acto muestra su imagen fija, sin transición.
 
-**Móvil:** el globo se reduce y se centra detrás del texto con opacidad baja. No se intenta reproducir la secuencia completa en pantallas angostas — se conservan tres estados (completo → abierto → sube) en vez de siete.
-
-**Rendimiento:** solo se animan `transform` y `opacity`. Nada de `filter`, `box-shadow` ni cambios de geometría. Ningún `<path>` cambia su atributo `d` en ningún momento.
+**Rendimiento:** solo se animan `opacity` y `transform`. Nada de `filter` ni `background-position`.
 
 ---
 
-## SVG maestro
+## Motor de animación
 
-Cada anillo son tres arcos de 120°. Cerrados se tocan y leen como un círculo; abiertos se separan con `transform`. Nunca se hace morphing de paths.
+Se conserva el motor de la v1: siete propiedades registradas con `@property --p1 … --p7`, cada una animada de 0 a 1 contra la `view-timeline` de su acto, con `timeline-scope` en el contenedor. El estado es una función pura de la posición de scroll, por lo que el scroll rápido nunca deja nada trabado y la ida y la vuelta son simétricas.
 
-```svg
-<svg viewBox="0 0 400 520" fill="none" aria-hidden="true" id="globo">
+Lo que cambia es qué consume esas variables:
 
-  <g id="envoltura">
-    <g id="anillo-teal" stroke="var(--teal-500)" stroke-width="26" stroke-linecap="round">
-      <path id="t1" d="M185,275 A95,95 0 0,1 102.7,132.5"/>
-      <path id="t2" d="M102.7,132.5 A95,95 0 0,1 267.3,132.5"/>
-      <path id="t3" d="M267.3,132.5 A95,95 0 0,1 185,275"/>
-    </g>
-    <g id="anillo-coral" stroke="var(--coral-300)" stroke-width="26" stroke-linecap="round">
-      <path id="c1" d="M215,275 A95,95 0 0,1 132.7,132.5"/>
-      <path id="c2" d="M132.7,132.5 A95,95 0 0,1 297.3,132.5"/>
-      <path id="c3" d="M297.3,132.5 A95,95 0 0,1 215,275"/>
-    </g>
-  </g>
+**Opacidad de cada imagen.** La imagen del acto N está en opacidad 1 mientras su acto ocupa la pantalla y se cruza con la siguiente en la transición. Cruce suave, sin fundido a blanco intermedio.
 
-  <g id="base" opacity="0">
-    <rect x="168" y="300" width="64" height="7" rx="3" fill="var(--coral-300)"/>
-    <path d="M186,300 L192,282 L198,300 Z" fill="var(--coral-300)"/>
-    <path d="M202,300 L208,286 L214,300 Z" fill="var(--coral-300)"/>
-  </g>
+**Desplazamiento y escala lentos dentro de cada acto.** Cada imagen entra en `scale(1.06)` y termina en `scale(1)`, con un desplazamiento vertical de unos 20px en el mismo tramo. Es lo que le da vida al plano fijo y evita que el sitio se sienta como un carrusel. Suave: si se nota como movimiento, es demasiado.
 
-  <g id="cables" stroke="var(--ink-200)" stroke-width="3">
-    <path d="M158,266 L184,360"/>
-    <path d="M242,266 L216,360"/>
-  </g>
-
-  <rect id="canasta" x="178" y="360" width="44" height="32" rx="10" fill="var(--ink-200)"/>
-
-  <g id="lastres" opacity="0">
-    <path d="M190,392 L190,424" stroke="var(--ink-200)" stroke-width="2"/>
-    <path d="M210,392 L210,440" stroke="var(--ink-200)" stroke-width="2"/>
-    <rect x="180" y="424" width="20" height="15" rx="4" fill="var(--ink-200)" opacity="0.55"/>
-    <rect x="200" y="440" width="20" height="15" rx="4" fill="var(--ink-200)" opacity="0.55"/>
-  </g>
-
-  <g id="estela" opacity="0" stroke="var(--ink-200)" stroke-width="3" stroke-linecap="round" opacity="0.3">
-    <path d="M168,420 L168,448"/>
-    <path d="M200,430 L200,466"/>
-    <path d="M232,420 L232,448"/>
-  </g>
-
-</svg>
-```
-
-Los colores salen de las variables del design system. Ningún hex escrito a mano.
+**Fallback.** Donde no haya soporte de `timeline-scope`, la isla con `IntersectionObserver` de la v1 escribe `data-acto="N"` y el CSS resuelve el estado con `transition`. Mismo resultado, sin librerías. La comprobación de soporte se hace sobre `timeline-scope`, no sobre `animation-timeline`.
 
 ---
 
-## Storyboard por acto
+## Legibilidad del texto
 
-Cada acto ocupa un tramo del scroll. Los valores son el estado **al final** del tramo; la interpolación es continua con el easing firma `cubic-bezier(.25,1,.5,1)`.
+**Este es el punto crítico de toda la spec.**
 
-### 01 · Relevo — completo
+Las imágenes son claras y cálidas: cielos color crema, sol bajo, mucha luz. Buena parte del copy va en ink sobre ellas y se va a perder.
 
-Estado base del SVG, sin transformaciones.
+**Cómo resolverlo:** un velo del color de fondo del acto entre la imagen y el texto.
 
-El globo entero flota con una oscilación mínima: `translateY` de ±6px en ciclo de 6s. Es lo único que se mueve sin scroll, y es lo que da la sensación de que está vivo.
+- Actos en off-white → velo `off-white-200` al 55–70% de opacidad
+- Actos en ink-gradient (04 y 07) → velo ink al 60–75%
 
-### 02 · El punto — con lastres
+**Cómo NO resolverlo:** oscureciendo las imágenes, subiéndoles el contraste o poniéndoles un degradado negro. La calidez de la serie es lo que la hace buena; un velo la conserva, un filtro la mata.
 
-- `#lastres` → `opacity: 1`
-- `#globo` completo → `translateY(18px)` — pesa, baja un poco
-- La oscilación se reduce a ±2px: está cargado, ya casi no flota
+El velo puede ser más denso justo detrás del bloque de texto y más liviano en el resto del cuadro, para que la imagen respire donde no hay nada encima.
 
-### 03 · Lo que realmente pasa — se abre
-
-Las seis piezas se separan hacia afuera, radialmente, con retardo escalonado de 60ms entre ellas.
-
-| Pieza | Transform final |
-|---|---|
-| `#t1` | `translate(-46px, 20px) rotate(-12deg)` |
-| `#t2` | `translate(-30px, -44px) rotate(-6deg)` |
-| `#t3` | `translate(10px, -18px) rotate(4deg)` |
-| `#c1` | `translate(-8px, 34px) rotate(8deg)` |
-| `#c2` | `translate(34px, -38px) rotate(6deg)` |
-| `#c3` | `translate(52px, 12px) rotate(14deg)` |
-
-- `#lastres` → `opacity: 0`
-- `#cables` → `opacity: 0.3`
-
-**El movimiento es ordenado y lento.** Ninguna pieza gira más de 15°. Si se ve caótico, está mal: esto es una apertura, no una explosión.
-
-### 04 · Lo que nadie está mirando — aparece la base
-
-Las piezas se mantienen abiertas, quietas.
-
-- `#base` → `opacity: 1`, entrando con `scale(0.6 → 1)` desde su propio centro
-- Las seis piezas → `opacity: 0.35`
-
-Es el único momento en que la base es protagonista. Todo lo demás retrocede.
-
-### 05 · El sistema — vuelve a armarse
-
-Las piezas regresan a su posición original, **de abajo hacia arriba**: primero las que estaban más bajas (`t1`, `c1`), al final las de arriba (`t2`, `c2`). Retardo escalonado de 80ms.
-
-- Todas las piezas → `transform: none`, `opacity: 1`
-- `#base` → `opacity: 0.5`, se queda pero deja de ser el foco
-- `#cables` → `opacity: 1`
-
-El orden importa y es el argumento del acto: primero la base, después la capa que se ve.
-
-### 06 · La forma Relevo — probándose
-
-- El globo entero → `translateY(-10px)`
-- Vuelve la oscilación, ahora de ±8px y algo más rápida: está listo
-
-### 07 · Conversación — sube
-
-- `#globo` → `translateY(-140px)`, `scale(0.82)`
-- `#estela` → `opacity: 1`
-- La capa completa → `opacity: 0.25`, para que el bloque de contacto quede limpio
+**Verificar acto por acto**, no con una regla global. Cada imagen tiene el globo en un lugar distinto y cada acto tiene su titular en un lugar distinto.
 
 ---
 
-## Implementación
+## Formatos y peso
 
-Preferir `animation-timeline: view()` y `scroll()` nativos de CSS. Donde no haya soporte, degradar a un `IntersectionObserver` que agregue clases de estado por acto — **nunca** a una librería de scroll.
+**Es el mayor riesgo del sitio.** Siete imágenes a pantalla completa contra un criterio de Lighthouse 95+.
 
-El SVG va una sola vez en el DOM, en un contenedor `sticky` que abarca los siete actos. No se duplica por sección.
+- Convertir a **AVIF** con respaldo **WebP**, servidas con `<picture>` o el componente de imagen de Next
+- Tamaños responsivos: 1920, 1280, 828, 640
+- **Presupuesto: menos de 250 KB por imagen en AVIF a 1920px.** Si alguna no baja, se simplifica el recorte, no se comprime más
+- Solo la del acto 01 carga con prioridad. Las otras seis, diferidas
+- Precargar la del acto siguiente cuando el actual entra en pantalla, para que el cruce no parpadee
+
+**Móvil:** generar recortes 4:5 de las siete. En pantallas angostas se conservan tres cruces —completo, abierto, sube— en vez de siete, para no gastar datos en transiciones que casi no se ven.
 
 ---
 
 ## Criterios de aceptación
 
-- [ ] El HTML de los siete actos llega completo aunque el SVG no cargue
-- [ ] Con `prefers-reduced-motion` el globo queda estático y no hay saltos
-- [ ] Ningún `<path>` cambia su atributo `d` en ninguna transición
-- [ ] Solo se animan `transform` y `opacity`
-- [ ] El texto es legible sobre el globo en todos los actos, en claro y sobre ink
-- [ ] En móvil se conservan tres estados y el rendimiento no cae
-- [ ] Ningún color hexadecimal escrito a mano en el SVG
-- [ ] Al hacer scroll rápido de arriba abajo no quedan piezas trabadas fuera de lugar
+- [ ] El HTML de los siete actos llega completo aunque las imágenes no carguen
+- [ ] Con `prefers-reduced-motion` no hay cruces ni desplazamiento, y no hay saltos
+- [ ] Todo el texto es legible sobre su imagen, verificado acto por acto, en claro y sobre ink
+- [ ] Ninguna imagen fue oscurecida ni le subieron el contraste: la legibilidad se resolvió con velo
+- [ ] Cada AVIF a 1920px pesa menos de 250 KB
+- [ ] Existen los recortes 4:5 y se sirven en móvil
+- [ ] Lighthouse sobre 95 en las cuatro categorías, con las imágenes cargando
+- [ ] El cruce entre actos no parpadea ni muestra fondo intermedio
+- [ ] Al hacer scroll rápido de arriba abajo el estado final es correcto
+- [ ] Solo se animan `opacity` y `transform`
+- [ ] Las imágenes llevan `alt` vacío: son decorativas, el contenido está en el texto

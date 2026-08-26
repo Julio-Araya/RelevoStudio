@@ -54,15 +54,6 @@ Alguien conecta lo que debería estar conectado.
 
 Y mientras tanto, una venta, una decisión o un cliente espera.
 
-**Grilla de ejemplos**
-*Tratamiento discreto, tipografía menor que el cuerpo. Son ejemplos, no el argumento.*
-
-- Alguien contesta más de cien mensajes al día.
-- La mitad del catálogo nunca alcanzó a describirse.
-- Los currículums se filtran a mano, uno por uno.
-- La asistencia se anota en un cuaderno.
-- Cada cotización pasa por la misma persona.
-
 ---
 
 ## 03 — LO QUE REALMENTE PASA
