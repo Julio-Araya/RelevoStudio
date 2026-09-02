@@ -186,7 +186,7 @@
     font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 1.03;
-    font-size: clamp(2.4rem, 6vw, 62px);
+    font-size: clamp(3rem, 7vw, 7rem);
   }
   .rv-header-4 {
     font-family: var(--font-display);
@@ -304,6 +304,11 @@
   }
   .rv-btn:hover .rv-arrow {
     transform: translate(3px, -3px);
+  }
+  /* Variante grande: los botones del héroe */
+  .rv-btn-lg {
+    font-size: 18px;
+    padding: 16px 28px;
   }
 
   /* Burbuja del chat: entra y sale con el easing firma; hover como el botón */

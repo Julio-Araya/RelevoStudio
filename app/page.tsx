@@ -24,7 +24,7 @@ export default function Home() {
 
       {/* Acto 01 · Relevo — off-white-200 */}
       <section data-acto="1">
-        <div className="mx-auto max-w-[1080px] px-7 pb-24 pt-20 md:pb-32 md:pt-28">
+        <div className="mx-auto max-w-[1080px] px-7 py-24 md:py-32">
           <Overline>Relevo Studio · Santiago de Chile</Overline>
           <h1 className="rv-header-1 max-w-[880px]">
             Hacer ligero lo que pesa<span className="text-coral-300">.</span>
@@ -40,10 +40,10 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <DialogTrigger target="chat" className="rv-btn bg-ink-200 text-coral-100">
+            <DialogTrigger target="chat" className="rv-btn rv-btn-lg bg-ink-200 text-coral-100">
               Empezar conversación <span className="rv-arrow" aria-hidden="true">↗</span>
             </DialogTrigger>
-            <Link href="/manifiesto" className="rv-btn bg-offwhite-300 text-ink-200">
+            <Link href="/manifiesto" className="rv-btn rv-btn-lg bg-offwhite-300 text-ink-200">
               Leer el manifiesto <span className="rv-arrow" aria-hidden="true">↗</span>
             </Link>
           </div>
@@ -52,7 +52,7 @@ export default function Home() {
 
       {/* Acto 02 · El punto — off-white-100, líneas escalonadas */}
       <section data-acto="2">
-        <div className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+        <div className="mx-auto max-w-[1080px] px-7 py-24 md:py-32">
           <Overline>El punto</Overline>
           <h2 className="rv-header-4 max-w-[820px]">
             <span className="rv-reveal block">Tu empresa funciona.</span>
@@ -77,7 +77,7 @@ export default function Home() {
 
       {/* Acto 03 · Lo que realmente pasa — off-white-200 */}
       <section data-acto="3">
-        <div className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+        <div className="mx-auto max-w-[1080px] px-7 py-24 md:py-32">
           <Overline>Lo que realmente pasa</Overline>
           <h2 className="rv-header-4 max-w-[760px]">
             El problema que se ve no siempre es el problema real.
@@ -131,7 +131,7 @@ export default function Home() {
 
       {/* Acto 05 · El sistema — off-white-100 */}
       <section data-acto="5">
-        <div className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+        <div className="mx-auto max-w-[1080px] px-7 py-24 md:py-32">
           <Overline>El sistema</Overline>
           <h2 className="rv-header-4 max-w-[760px]">
             El sistema empieza antes que la IA.
@@ -171,7 +171,7 @@ export default function Home() {
       {/* Acto 06 · La forma Relevo — off-white-200, los tres verbos como
           paneles de color sólido con flecha ↙ (design system, 06) */}
       <section data-acto="6">
-        <div className="mx-auto max-w-[1080px] px-7 py-20 md:py-28">
+        <div className="mx-auto max-w-[1080px] px-7 py-24 md:py-32">
           <Overline>La forma Relevo</Overline>
           <h2 className="rv-header-4 max-w-[820px]">
             Construimos lo que el día a día nunca alcanza a construir.

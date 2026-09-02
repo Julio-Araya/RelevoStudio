@@ -9,9 +9,11 @@
  * un 40 % de su tramo. Ninguna imagen queda sola más allá del centro de su
  * acto. El estado es una función pura de la posición de scroll.
  *
- * Cruce: la imagen N entra encima de la anterior (opacidad --pN) y la anterior
- * se mantiene opaca debajo hasta que N la cubrió entera; recién se apaga
- * mientras entra N+1. Así nunca aparece el fondo entre dos imágenes.
+ * Cruce: secuencial, nunca dos globos a la vez. Con el mismo --pN, la imagen
+ * saliente baja a 0 en el primer tramo (0→0.45) con un desplazamiento propio
+ * hacia arriba —se lee como salida—, hay un tramo corto donde domina el velo
+ * (0.45→0.55, ahí mismo conmuta --oscuro) y la entrante sube recién después
+ * (0.55→1).
  *
  * Velo: un solo elemento en la capa sticky, entre las imágenes y el texto.
  * Su color se interpola con --oscuro (0 en los actos claros, 1 en los actos
@@ -58,7 +60,7 @@
 
   /* Colores del texto, derivados de --oscuro */
   --tinta: color-mix(in srgb, var(--color-offwhite-200) calc(var(--oscuro) * 100%), var(--color-ink-200));
-  --cuerpo: color-mix(in srgb, var(--tinta) calc(100% - 20% * var(--oscuro)), transparent);
+  --cuerpo: var(--tinta); /* sólido: ink-200 sobre claro, off-white sobre ink */
   --pie: color-mix(in srgb, var(--tinta) 70%, transparent); /* 55 % no llega a AA */
   --overline: color-mix(in srgb, var(--color-coral-200) calc(var(--oscuro) * 100%), var(--color-coral-400));
   --destacado: color-mix(in srgb, var(--color-teal-300) calc(var(--oscuro) * 100%), var(--color-teal-600));
@@ -73,12 +75,23 @@
 .globo-escena [data-acto="5"] { view-timeline-name: --acto-5; }
 .globo-escena [data-acto="6"] { view-timeline-name: --acto-6; }
 
-/* Secciones: posicionadas, sin fondo. El velo va en la capa sticky. */
+/* Secciones: posicionadas, sin fondo (el velo va en la capa sticky), cada
+   acto ocupa al menos una pantalla con el contenido centrado en vertical. */
 .globo-escena [data-acto] {
   position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+}
+.globo-escena [data-acto] > div {
+  width: 100%;
 }
 
-.rv-cuerpo { color: var(--cuerpo); }
+.rv-cuerpo {
+  color: var(--cuerpo);
+  font-size: 19px;
+  line-height: 1.55;
+}
 .rv-pie { color: var(--pie); }
 .rv-overline-acto { color: var(--overline); }
 .rv-destacado {
@@ -113,24 +126,28 @@
      Mismo valor que usa scripts/imagenes.mjs para el recorte 4:5. */
   object-position: var(--foco) 50%;
 
-  /* Visible desde que empieza a entrar (--in) hasta que la subsiguiente
-     terminó de entrar (--out); mientras tanto la siguiente la tapa. */
-  opacity: clamp(0, calc(var(--in) - var(--out)), 1);
+  /* Entrada y salida desfasadas sobre la misma variable: la saliente
+     (--out 0→0.45) termina antes de que la entrante (--in 0.55→1) empiece.
+     Entre medio solo se ve el velo. */
+  --ent: clamp(0, calc((var(--in) - 0.55) / 0.45), 1);
+  --sal: clamp(0, calc(var(--out) / 0.45), 1);
+  opacity: clamp(0, calc(var(--ent) - var(--sal)), 1);
 
-  /* Desplazamiento y escala lentos: entra en 1.06 y +20px, termina en 1 y 0
-     cuando la siguiente ya la cubrió. --avance recorre 0→1 en ese tramo. */
+  /* Desplazamiento y escala lentos: entra en 1.06 y +20px y asienta en 1 y 0
+     (--avance recorre su tramo visible). Al salir, sube 44px propios: salida,
+     no superposición. */
   --avance: calc((var(--in) + var(--sig)) / 2);
   --s: calc(1.06 - 0.06 * var(--avance));
-  --y: calc(20px * (1 - var(--avance)));
+  --y: calc(20px * (1 - var(--avance)) - 44px * var(--sal));
   transform: translateY(var(--y)) scale(var(--s));
 }
 
-.globo-imagen-1 { --foco: 78%; --in: 1;        --sig: var(--p2); --out: var(--p3); --avance: var(--p2); }
-.globo-imagen-2 { --foco: 77%; --in: var(--p2); --sig: var(--p3); --out: var(--p4); }
-.globo-imagen-3 { --foco: 70%; --in: var(--p3); --sig: var(--p4); --out: var(--p5); }
-.globo-imagen-4 { --foco: 50%; --in: var(--p4); --sig: var(--p5); --out: var(--p6); }
-.globo-imagen-5 { --foco: 30%; --in: var(--p5); --sig: var(--p6); --out: var(--p7); }
-.globo-imagen-6 { --foco: 76%; --in: var(--p6); --sig: var(--p7); --out: 0; }
+.globo-imagen-1 { --foco: 78%; --in: 1;        --sig: var(--p2); --out: var(--p2); --avance: var(--p2); }
+.globo-imagen-2 { --foco: 77%; --in: var(--p2); --sig: var(--p3); --out: var(--p3); }
+.globo-imagen-3 { --foco: 70%; --in: var(--p3); --sig: var(--p4); --out: var(--p4); }
+.globo-imagen-4 { --foco: 50%; --in: var(--p4); --sig: var(--p5); --out: var(--p5); }
+.globo-imagen-5 { --foco: 30%; --in: var(--p5); --sig: var(--p6); --out: var(--p6); }
+.globo-imagen-6 { --foco: 76%; --in: var(--p6); --sig: var(--p7); --out: var(--p7); }
 .globo-imagen-7 { --foco: 76%; --in: var(--p7); --sig: var(--p7); --out: 0; }
 
 /* Móvil: tres cruces —completo, abierto, sube— en vez de siete. Las otras
@@ -142,8 +159,8 @@
   .globo-imagen-6 {
     display: none;
   }
-  .globo-imagen-1 { --foco: 50%; --sig: var(--p3); --out: 0; --avance: var(--p3); }
-  .globo-imagen-3 { --foco: 50%; --sig: var(--p7); --out: 0; }
+  .globo-imagen-1 { --foco: 50%; --sig: var(--p3); --out: var(--p3); --avance: var(--p3); }
+  .globo-imagen-3 { --foco: 50%; --sig: var(--p7); --out: var(--p7); }
   .globo-imagen-7 { --foco: 50%; }
 }
 
@@ -183,7 +200,9 @@
        centro del viewport (cover 50 %) hasta que casi terminó de salir
        (cover 90 %). Un 40 % del tramo del acto. */
     animation-range: cover 50% cover 90%;
-    animation-timing-function: var(--ease-quart);
+    /* Lineal: los tramos de salida (0→0.45) y entrada (0.55→1) reparten el
+       scroll parejo; con ease-quart la salida quedaría comprimida al inicio */
+    animation-timing-function: linear;
     animation-fill-mode: both;
   }
 }

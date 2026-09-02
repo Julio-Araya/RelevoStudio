@@ -52,7 +52,7 @@ Se conserva el motor de la v1: siete propiedades registradas con `@property --p1
 
 Lo que cambia es qué consume esas variables:
 
-**Opacidad de cada imagen.** La imagen del acto N está en opacidad 1 mientras su acto ocupa la pantalla y se cruza con la siguiente en la transición. Cruce suave, sin fundido a blanco intermedio.
+**Opacidad de cada imagen.** La imagen del acto N está en opacidad 1 mientras su acto ocupa la pantalla. La transición es secuencial: la saliente baja a 0 —con un desplazamiento propio hacia arriba, para que se lea como salida— antes de que la entrante empiece a subir, con un tramo corto donde domina el velo. Nunca se ven dos globos a la vez.
 
 **Desplazamiento y escala lentos dentro de cada acto.** Cada imagen entra en `scale(1.06)` y termina en `scale(1)`, con un desplazamiento vertical de unos 20px en el mismo tramo. Es lo que le da vida al plano fijo y evita que el sitio se sienta como un carrusel. Suave: si se nota como movimiento, es demasiado.
 
